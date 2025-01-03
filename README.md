@@ -4,9 +4,10 @@ UniFrac is a widely used distance metric (1,2,3) to provide quantitive informati
 ## Quick install
 ```bash
 ##Linux
-wget 
-unzip unifeb.zip
+wget https://github.com/jianshu93/unifeb/releases/download/v0.1.0/unifeb_Linux_x86-64_v0.1.0.zip
+unzip unifeb_Linux_x86-64_v0.1.0.zip
 chmod a+x ./unifeb
+./unifeb -h
 ```
 
 ## Compiling from source (Linux only)
