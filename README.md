@@ -9,6 +9,10 @@ unzip unifeb_Linux_x86-64_v0.1.0.zip
 chmod a+x ./unifeb
 ./unifeb -h
 ```
+Or if you have bioconda installed (Linux)
+```bash
+conda install -c bioconda -c conda-forge unifeb
+```
 
 ## Compiling from source (Linux only)
 ```bash
@@ -50,6 +54,12 @@ Running test data:
 ```bash
 ### Each taxa in the feature table must be found in the tree as leaf/tip.
 ./target/release/unifeb -t ./data/ASVs_aligned.tre -f ./data/ASV_counts.txt -o embedded.csv hnsw --nbconn 48 --ef 400 --knbn 15 --scale_modify_f 0.25
+```
+Running real-world data
+```bash
+wget https://github.com/jianshu93/unifeb/releases/download/v0.1.0/test_large.zip
+unzip test_large.zip
+./target/release/unifeb -t GWMC_rep_seqs_all.tre -f GWMC_16S_otutab.txt  -o embedded.csv
 ```
 
 ## Generating OTU/ASV table and tree
