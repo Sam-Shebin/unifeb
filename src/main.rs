@@ -35,7 +35,8 @@ use csv;
 use hnsw_rs::prelude::*; // For Hnsw
 
 // *** Import DistUniFrac
-use anndists::dist::DistUniFrac;
+//use anndists::dist::DistUniFrac; // commented out per change to use NewDistUniFrac
+use anndists::dist::distances::NewDistUniFrac;
 
 // annembed
 use annembed::fromhnsw::kgraph::{kgraph_from_hnsw_all, KGraph};
@@ -126,14 +127,14 @@ fn parse_embed_group(
 //
 fn get_kgraph_unifrac(
     data_with_id: &[(&Vec<f32>, usize)],
-    dist_unifrac: DistUniFrac,
+    dist_unifrac: NewDistUniFrac,
     hparams: &HnswParams,
     nb_layer: usize,
 ) -> KGraph<f32> {
     let nb_data = data_with_id.len();
 
     // Build HNSW
-    let mut hnsw = Hnsw::<f32, DistUniFrac>::new(
+    let mut hnsw = Hnsw::<f32, NewDistUniFrac>::new(
         hparams.max_conn,
         nb_data,
         nb_layer,
@@ -153,14 +154,14 @@ fn get_kgraph_unifrac(
 // Hierarchical approach
 fn get_kgraphproj_unifrac(
     data_with_id: &[(&Vec<f32>, usize)],
-    dist_unifrac: DistUniFrac,
+    dist_unifrac: NewDistUniFrac,
     hparams: &HnswParams,
     nb_layer: usize,
     layer_proj: usize,
 ) -> KGraphProjection<f32> {
     let nb_data = data_with_id.len();
     // Build HNSW
-    let mut hnsw = Hnsw::<f32, DistUniFrac>::new(
+    let mut hnsw = Hnsw::<f32, NewDistUniFrac>::new(
         hparams.max_conn,
         nb_data,
         nb_layer,
@@ -428,7 +429,7 @@ fn main() -> Result<()> {
     // build DistUniFrac
     let weighted = matches.get_flag("weighted");
     // feature_names is the "dimension list" in the same order we used in matrix columns
-    let dist_unifrac = DistUniFrac::new(&newick_str, weighted, feature_names.clone())?;
+    let dist_unifrac = NewDistUniFrac::new(&newick_str, weighted, feature_names.clone())?;
 
     // We'll embed S samples => each row of `matrix` is a sample vector
     // data_with_id => ( &Vec<f32>, sample_id )
