@@ -23,4 +23,3 @@ hnsw_rs = { git = "https://github.com/jianshu93/hnswlib-rs", rev = "97dcc91a2772
 # keep hnsw_rs pinned at workspace level; no per-package patches here
 hnsw_rs = { git = "https://github.com/jianshu93/hnswlib-rs", rev = "97dcc91a2772b6371159eb010b6fed9f460df879" }
 
-#I wrote my name
