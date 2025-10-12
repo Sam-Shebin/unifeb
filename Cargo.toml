@@ -10,6 +10,7 @@ ndarray = "0.16"
 clap = "4.3"
 log = { version = "0.4" }
 env_logger = { version = "0.11" }
+
 anndists = { git = "https://github.com/Sam-Shebin/anndists.git", rev = "c3aad712" }
 anyhow = { version = "1.0.58" }
 csv = { version = "1.1" }
