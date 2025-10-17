@@ -20,5 +20,5 @@ annembed = {git = "https://github.com/jianshu93/annembed", default-features = fa
 #hnsw_rs = { git = "https://github.com/jianshu93/hnswlib-rs", rev = "97dcc91a2772b6371159eb010b6fed9f460df879", features = ["simdeez_f"] }
 #hnsw_rs = { path = "../hnswlib-rs", features = ["simdeez_f"] }
 
-hnsw_rs = { git = "https://github.com/Sam-Shebin/hnswlib-rs.git", features = ["simdeez_f"] }
+hnsw_rs = { git = "https://github.com/Sam-Shebin/hnswlib-rs.git", rev = "e6ee07e0", features = ["simdeez_f"] }
 
