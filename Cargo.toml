@@ -21,3 +21,7 @@ annembed = { git = "https://github.com/Sam-Shebin/annembed.git", rev = "6327ee8d
 
 hnsw_rs = { git = "https://github.com/Sam-Shebin/hnswlib-rs.git", rev = "e6ee07e0", features = ["simdeez_f"] }
 
+[patch.crates-io]
+# Ensure any dependency asking for hnsw_rs (crates.io) uses the user's git fork
+hnsw_rs = { git = "https://github.com/Sam-Shebin/hnswlib-rs.git", rev = "e6ee07e0" }
+
