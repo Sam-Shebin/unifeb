@@ -22,7 +22,7 @@
 // (i.e. columns in your feature table, excluding the first column for feature IDs).
 // -------------------------------------------------------------------------------------
 
-use std::collections::HashMap;
+// HashMap import removed (unused)
 use std::fs::File;
 use std::io::{BufRead, BufReader};
 
@@ -82,15 +82,10 @@ fn parse_hnsw_cmd(matches: &ArgMatches) -> Result<HnswParams, anyhow::Error> {
 
 //
 // QualityParams: optional sampling fraction for measuring embedding quality
-//
-#[derive(Copy, Clone)]
+// Keep a minimal struct and use the field so we don't get dead-code warnings
+#[derive(Debug, Clone)]
 pub struct QualityParams {
-    sampling_fraction: f64,
-}
-impl Default for QualityParams {
-    fn default() -> Self {
-        QualityParams { sampling_fraction: 1.0 }
-    }
+    pub sampling_fraction: f64,
 }
 
 //
@@ -458,7 +453,8 @@ fn main() -> Result<()> {
         let _res = write_csv_array2(&mut csv_w, &embedder.get_embedded_reindexed());
         csv_w.flush().unwrap();
 
-        if let Some(_q) = maybe_quality {
+        if let Some(q) = maybe_quality {
+            log::info!("quality sampling fraction requested: {:.4}", q.sampling_fraction);
             let _quality_est = embedder.get_quality_estimate_from_edge_length(100);
             // Possibly print or store _quality_est
         }
@@ -479,7 +475,8 @@ fn main() -> Result<()> {
         let _res = write_csv_array2(&mut csv_w, &embedder.get_embedded_reindexed());
         csv_w.flush().unwrap();
 
-        if let Some(_q) = maybe_quality {
+        if let Some(q) = maybe_quality {
+            log::info!("quality sampling fraction requested (hierarchical): {:.4}", q.sampling_fraction);
             let _quality_est = embedder.get_quality_estimate_from_edge_length(100);
         }
     }
